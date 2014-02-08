@@ -17,11 +17,11 @@ public class VolSoundIntercept extends BroadcastReceiver
 	  int curVal = intent.getIntExtra("android.media.EXTRA_VOLUME_STREAM_VALUE", -1);
     int prevVal = intent.getIntExtra("android.media.EXTRA_PREV_VOLUME_STREAM_VALUE", -1);
     Log.i("blah", curRing + " " + curVal + " " + prevVal);
-	  if (curRing != -1 && curVal != -1 && prevVal != -1 && curVal == prevVal)
+	  if (curRing != -1 && curVal != -1 && prevVal != -1)
     {
       count++;
       Log.i("blah", ""+count);
-      if (count <= 5)
+      if (count <= 1)
       {
         AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         am.adjustStreamVolume(curRing, AudioManager.ADJUST_SAME, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);

@@ -4,6 +4,7 @@ import android.media.AudioManager;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentFilter;
 import android.view.Menu;
 import android.view.View;
@@ -14,21 +15,19 @@ public class MainActivity extends Activity
   private Button button;
   private VolSoundIntercept br;
   private IntentFilter intFil;
+  private Context thisActivity;
 
   @Override
   protected void onCreate(Bundle savedInstanceState)
   {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
+    thisActivity = this;
     button = (Button) findViewById(R.id.button1);
     button.setOnClickListener(new View.OnClickListener() {
       public void onClick(View v)
       {
-        AudioManager am = (AudioManager) getSystemService(Context.AUDIO_SERVICE);
-        while (true)
-        {
-          am.adjustStreamVolume(AudioManager.STREAM_RING, AudioManager.ADJUST_SAME, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
-        }
+        startService(new Intent(thisActivity, VolSoundInterceptorService.class));
       }
     });
     br = new VolSoundIntercept();
