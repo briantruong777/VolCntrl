@@ -21,7 +21,7 @@ public class VolSoundIntercept extends BroadcastReceiver
     {
       count++;
       Log.i("blah", ""+count);
-      if (count <= 1)
+      if (count <= 25)
       {
         AudioManager am = (AudioManager) context.getSystemService(Context.AUDIO_SERVICE);
         am.adjustStreamVolume(curRing, AudioManager.ADJUST_SAME, AudioManager.FLAG_REMOVE_SOUND_AND_VIBRATE);
